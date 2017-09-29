@@ -5,16 +5,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Dbase {
-    private Connection conexao;
-    public Dbase() throws SQLException, ClassNotFoundException{
+    
+    private static Connection conexao = null;
+    
+    public static Connection getConexao() throws ClassNotFoundException, SQLException{
+        if(conexao == null || conexao.isClosed()){
+            conexao = criar();
+        }
+        return conexao;
+    }
+    
+    private static Connection criar() throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
-        conexao = DriverManager.getConnection("jdbc:postgresql://localhost/Projeto", "postgres", "1234");
-        System.out.println("testestes");
+        return DriverManager.getConnection("jdbc:postgresql://localhost/Projeto", "postgres", "1211");
     }
-    public Connection getConexao(){
-        return this.conexao;
-    }
-    public void close(){
+    
+    public void close() throws SQLException{
+        conexao.close();
         System.out.println("Banco de dados fechado!");
     }
 }

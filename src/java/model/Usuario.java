@@ -1,20 +1,30 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author flavi
  */
 public class Usuario {
+    private int id;
     private String nome;
     private String login;
     private String senha;
     private String email;
     private String endereco;
     private String telefone;
+    private String foto;
+    private ArrayList<Postagem> postagens;
 
-    /**
-     * @return the nome
-     */
+    public Usuario(){
+    
+    }
+    
+    public Usuario(int id){
+       
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -50,8 +60,13 @@ public class Usuario {
     /**
      * @param senha the senha to set
      */
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public boolean setSenha(String antiga, String nova) {
+        boolean alterada = false;
+        if(this.senha.equals(antiga)){
+            this.senha = nova;
+            alterada = true;
+        }            
+        return alterada;
     }
 
     /**
