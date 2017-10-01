@@ -1,11 +1,14 @@
 package model;
 
+import dados.Dbase;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author flavi
- */
 public class Usuario {
     private int id;
     private String nome;
@@ -16,50 +19,80 @@ public class Usuario {
     private String telefone;
     private String foto;
     private ArrayList<Postagem> postagens;
+    public Connection conn = null;
+    public ResultSet rs;
+    public PreparedStatement ps;
 
     public Usuario(){
     
     }
     
-    public Usuario(int id){
-       
+    public Usuario(String login, String senha){
+        conn = Dbase.getConnection();
+        this.login = login;
+        this.senha = senha;
+    }
+    
+    public Usuario procura(String variavel) throws SQLException{
+        Usuario user = null;
+        //ResultSet rs;
+        //PreparedStatement ps;
+        
+        ps = conn.prepareStatement("SELECT * FROM usuario");
+        rs = ps.executeQuery();
+        while(rs.next()){
+            if(rs.getString("usuario").equals(variavel) || rs.getString("email").equals(variavel)){
+                user = new Usuario(rs.getString("login"), rs.getString("senha"));
+                break;
+            }
+        }
+        return user;
+    }
+    
+    public boolean gravar(Usuario user) throws SQLException{
+        
+        boolean ok = false;
+        conn = Dbase.getConnection();
+        String sql = "INSERT INTO usuario VALUES(null,?,?,?,?,?,?)";
+        
+        try{
+            ps = conn.prepareStatement(sql);
+            ps.setString(2, user.getNome());
+            ps.setString(3, user.getLogin());
+            ps.setString(4, user.getSenha());
+            ps.setString(5, user.getEmail());
+            ps.setString(6, user.getEndereco());
+            ps.setString(7, user.getTelefone());
+            ps.execute();
+            ok = true;
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conn.close();
+        return ok;
     }
     
     public String getNome() {
         return nome;
     }
 
-    /**
-     * @param nome the nome to set
-     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return the login
-     */
     public String getLogin() {
         return login;
     }
 
-    /**
-     * @param login the login to set
-     */
     public void setLogin(String login) {
         this.login = login;
     }
 
-    /**
-     * @return the senha
-     */
     public String getSenha() {
         return senha;
     }
 
-    /**
-     * @param senha the senha to set
-     */
     public boolean setSenha(String antiga, String nova) {
         boolean alterada = false;
         if(this.senha.equals(antiga)){
@@ -68,51 +101,28 @@ public class Usuario {
         }            
         return alterada;
     }
-
-    /**
-     * @return the email
-     */
     public String getEmail() {
         return email;
     }
-
-    /**
-     * @param email the email to set
-     */
+    
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * @return the endereco
-     */
     public String getEndereco() {
         return endereco;
     }
 
-    /**
-     * @param endereco the endereco to set
-     */
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
-    /**
-     * @return the telefone
-     */
     public String getTelefone() {
         return telefone;
     }
 
-    /**
-     * @param telefone the telefone to set
-     */
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
     
-    public Usuario(String login, String senha){
-        this.login = login;
-        this.senha = senha;
-    }
 }
