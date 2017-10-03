@@ -28,7 +28,6 @@ public class Usuario {
     }
     
     public Usuario(String login, String senha){
-        conn = Dbase.getConnection();
         this.login = login;
         this.senha = senha;
     }
