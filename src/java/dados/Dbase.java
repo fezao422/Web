@@ -12,15 +12,15 @@ public class Dbase {
     private static Connection conexao = null;
     
     public Dbase(){
-        String url ="jdbc:postgresql://localhost/";
-        String dbName = "Projeto";
+ 
+        String url ="jdbc:postgresql://localhost/Projeto";
         String driver = "org.postgresql.Driver";
         String userName = "postgres";
         String password = "1211";
         
         try {
             Class.forName(driver);
-            conexao = DriverManager.getConnection(url + dbName, userName, password);
+            conexao = DriverManager.getConnection(url, userName, password);
         } 
         catch (Exception ex) {
             JOptionPane.showMessageDialog(
@@ -31,34 +31,18 @@ public class Dbase {
                 );
                 ex.printStackTrace();
             }   
-        }
-        public static Connection getConnection(){
-            return conexao;
-        }
-        public static void closeConnection() {
-            try                { 
-                conexao.close(); 
-            }
-            catch(Exception e) { 
-                e.printStackTrace(); 
-            }
-        }
     }
-    /*
-    public static Connection getConexao() throws ClassNotFoundException, SQLException{
-        if(conexao == null || conexao.isClosed()){
-            conexao = criar();
-        }
+    
+    public static Connection getConnection(){
         return conexao;
     }
     
-    private static Connection criar() throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
-        return DriverManager.getConnection("jdbc:postgresql://localhost/Projeto", "postgres", "1211");
+    public static void closeConnection() {
+        try                { 
+            conexao.close(); 
+        }
+        catch(Exception e) { 
+            e.printStackTrace(); 
+        }
     }
-    
-    public void close() throws SQLException{
-        conexao.close();
-        System.out.println("Banco de dados fechado!");
-    }*/
-
+}

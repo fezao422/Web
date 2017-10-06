@@ -19,9 +19,9 @@ public class Usuario {
     private String telefone;
     private String foto;
     private ArrayList<Postagem> postagens;
-    public Connection conn = null;
-    public ResultSet rs;
-    public PreparedStatement ps;
+    public static Connection conn = null;
+    public static ResultSet rs;
+    public static PreparedStatement ps;
 
     public Usuario(){
     
@@ -32,10 +32,17 @@ public class Usuario {
         this.senha = senha;
     }
     
-    public Usuario procura(String variavel) throws SQLException{
+    public static boolean autentica(Usuario user) throws SQLException{
+        boolean ok = false;
+        Usuario dentro = procura(user.login);
+        if(dentro != null && dentro.senha.equals(user.senha)){
+            ok = true;
+        }
+        return ok;
+    }
+    
+    public static Usuario procura(String variavel) throws SQLException{
         Usuario user = null;
-        //ResultSet rs;
-        //PreparedStatement ps;
         
         ps = conn.prepareStatement("SELECT * FROM usuario");
         rs = ps.executeQuery();
@@ -48,20 +55,20 @@ public class Usuario {
         return user;
     }
     
-    public boolean gravar(Usuario user) throws SQLException{
+    public boolean gravar() throws SQLException{
         
         boolean ok = false;
         conn = Dbase.getConnection();
-        String sql = "INSERT INTO usuario VALUES(null,?,?,?,?,?,?)";
+        String sql = "INSERT INTO usuario(nome,login,senha,email,endereco,telefone) VALUES(?,?,?,?,?,?);";
         
         try{
             ps = conn.prepareStatement(sql);
-            ps.setString(2, user.getNome());
-            ps.setString(3, user.getLogin());
-            ps.setString(4, user.getSenha());
-            ps.setString(5, user.getEmail());
-            ps.setString(6, user.getEndereco());
-            ps.setString(7, user.getTelefone());
+            ps.setString(1, this.getNome());
+            ps.setString(2, this.getLogin());
+            ps.setString(3, this.getSenha());
+            ps.setString(4, this.getEmail());
+            ps.setString(5, this.getEndereco());
+            ps.setString(6, this.getTelefone());
             ps.execute();
             ok = true;
             ps.close();
@@ -123,5 +130,4 @@ public class Usuario {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
 }
