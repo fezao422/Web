@@ -8,8 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Usuario {
+
     private int id;
     private String nome;
     private String login;
@@ -18,57 +20,78 @@ public class Usuario {
     private String endereco;
     private String telefone;
     private String foto;
-    private ArrayList<Postagem> postagens;
-    public static Connection conn = null;
-    public static ResultSet rs;
-    public static PreparedStatement ps;
+    private Connection conn = null;
+    private Dbase db;
+    private PreparedStatement ps;
 
-    public Usuario(){
-    
+    public Usuario() {
+
     }
-    
-    public Usuario(String login, String senha){
+
+    public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;
     }
-    
-    public static boolean autentica(Usuario user) throws SQLException{
+
+    public Usuario(int id, String nome, String login, String senha, String email, String ende, String fone) {
+        this.id = id;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+        this.email = email;
+        this.endereco = ende;
+        this.telefone = fone;
+    }
+
+    public boolean autentica(Usuario user) throws SQLException {
+
         boolean ok = false;
         Usuario dentro = procura(user.login);
-        if(dentro != null && dentro.senha.equals(user.senha)){
+        if (dentro != null && dentro.senha.equals(user.senha)) {
             ok = true;
         }
         return ok;
     }
-    
-    public static Usuario procura(String variavel) throws SQLException{
+
+    public Usuario procura(String variavel) throws SQLException {
+        System.out.println(variavel);
+        db = new Dbase();
+        conn = db.getConnection();
         Usuario user = null;
-        
-        ps = conn.prepareStatement("SELECT * FROM usuario");
-        rs = ps.executeQuery();
-        while(rs.next()){
-            if(rs.getString("usuario").equals(variavel) || rs.getString("email").equals(variavel)){
-                user = new Usuario(rs.getString("login"), rs.getString("senha"));
-                break;
+        String sql = "select * from usuario;";
+        ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            if (rs.getString("login").equals(variavel)) {
+                if (rs.getString("email").equals(variavel)) {
+                    JOptionPane.showMessageDialog(null, rs.getString("email"));
+                    user = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"),
+                            rs.getString("email"), rs.getString("endereco"), rs.getString("telefone"));
+                    break;
+                }
             }
         }
+        conn.close();
+        db.closeConnection();
         return user;
     }
-    
-    public boolean gravar() throws SQLException{
-        
+
+    public boolean gravar(Usuario user) throws SQLException {
+
+        db = new Dbase();
+        conn = db.getConnection();
         boolean ok = false;
-        conn = Dbase.getConnection();
         String sql = "INSERT INTO usuario(nome,login,senha,email,endereco,telefone) VALUES(?,?,?,?,?,?);";
-        
-        try{
+
+        try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, this.getNome());
-            ps.setString(2, this.getLogin());
-            ps.setString(3, this.getSenha());
-            ps.setString(4, this.getEmail());
-            ps.setString(5, this.getEndereco());
-            ps.setString(6, this.getTelefone());
+            ps.setString(1, user.getNome());
+            ps.setString(2, user.getLogin());
+            ps.setString(3, user.getSenha());
+            ps.setString(4, user.getEmail());
+            ps.setString(5, user.getEndereco());
+            ps.setString(6, user.getTelefone());
             ps.execute();
             ok = true;
             ps.close();
@@ -76,9 +99,19 @@ public class Usuario {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         conn.close();
+        db.closeConnection();
         return ok;
     }
-    
+
+    public boolean setSenha(String antiga, String nova) {
+        boolean alterada = false;
+        if (this.senha.equals(antiga)) {
+            this.senha = nova;
+            alterada = true;
+        }
+        return alterada;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -99,18 +132,10 @@ public class Usuario {
         return senha;
     }
 
-    public boolean setSenha(String antiga, String nova) {
-        boolean alterada = false;
-        if(this.senha.equals(antiga)){
-            this.senha = nova;
-            alterada = true;
-        }            
-        return alterada;
-    }
     public String getEmail() {
         return email;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
     }
