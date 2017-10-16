@@ -30,14 +30,14 @@ public class Cadastro extends HttpServlet {
 
                 out.println("<div class=\"cadastro\">");
                 out.println("<p>Preencha todos os campos!</p>");
-                out.println("<p><a href=\"Cadastro.jsp\">Tente novamente</p>");
+                out.println("<p><a href=\"Cadastro.jsp\">Tente novamente</a></p>");
                 out.println("</div>");
 
             } else if (user.procura(user.getLogin()) != null && user.procura(user.getEmail()) != null) {
 
                 out.println("<div class=\"cadastro\">");
                 out.println("<p>Login ou E-mail já existente!</p>");
-                out.println("<p><a href=\"Cadastro.jsp\">Tente novamente</p>");
+                out.println("<p><a href=\"Cadastro.jsp\">Tente novamente</a></p>");
                 out.println("</div>");
 
             } else {

@@ -16,7 +16,7 @@ public class Dbase {
         String url = "jdbc:postgresql://localhost/Projeto";
         String driver = "org.postgresql.Driver";
         String userName = "postgres";
-        String password = "1211";
+        String password = "1234";
 
         try {
             Class.forName(driver);

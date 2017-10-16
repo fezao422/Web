@@ -43,7 +43,7 @@
                 <input type="submit" value="Cadastrar">
             </form>
             <br>
-            <a href="./Login.jsp">Se já tem um login, clique aqui</a>
+            <p>Se já tem um login, <a href="./Login.jsp">clique aqui</a> </p>
             <br>
         </div>
     </body>

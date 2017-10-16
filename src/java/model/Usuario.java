@@ -65,7 +65,6 @@ public class Usuario {
         while (rs.next()) {
             if (rs.getString("login").equals(variavel)) {
                 if (rs.getString("email").equals(variavel)) {
-                    JOptionPane.showMessageDialog(null, rs.getString("email"));
                     user = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"),
                             rs.getString("email"), rs.getString("endereco"), rs.getString("telefone"));
                     break;

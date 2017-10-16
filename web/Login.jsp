@@ -23,7 +23,7 @@
                 <input type="submit" value="Logar">
             </form>
             <br>
-            <a href="./Cadastro.jsp">Se não tem um cadastro, clique aqui</a>
+            <p>Se não tem um cadastro, <a href="./Cadastro.jsp">clique aqui</a> </p>
             <br>
         </div>
     </body>
