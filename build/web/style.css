@@ -1,13 +1,23 @@
+body{
+    background-color: #333333;
+}
+a{
+    text-decoration: none;
+}
 .cadastro{
+    background-color: white;
     margin: 0 auto;
     width: 300px;
     height: 450px;
     border: 2px solid;
+    border-top: none;
     padding: 60px;
     text-align: center;
 }
 @media screen and (min-width: 900px){
+
     body {
+        background-color: white;
         font-family: 'source sans pro', 'Helvetica Neue', 'Arial', sans-serif;
         font-weight: 100;
         margin: 0;
