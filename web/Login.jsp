@@ -10,7 +10,7 @@
         <div class="cadastro">
             <h1>Login</h1>
             <form action="Login" method="POST">
-                <label for="nome" name="nome">Nome Completo:</label>
+                <label for="nome" name="nome">Login:</label>
                 <br>
                 <input type="text" name="login">
                 <br>

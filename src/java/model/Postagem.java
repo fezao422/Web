@@ -10,13 +10,15 @@ public class Postagem {
     public Postagem(){
         
     }
+
     
-    public Postagem(int id){
-        
-    }
     
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUsuario_id() {
@@ -42,4 +44,13 @@ public class Postagem {
     public void setTexto(String texto) {
         this.texto = texto;
     }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+    
 }

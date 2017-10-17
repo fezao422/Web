@@ -47,14 +47,15 @@ public class Usuario {
 
         boolean ok = false;
         Usuario dentro = procura(user.login);
-        if (dentro != null && dentro.senha.equals(user.senha)) {
+        
+        if (dentro != null || dentro.senha.equals(user.senha)) {
             ok = true;
         }
         return ok;
     }
 
-    public Usuario procura(String variavel) throws SQLException {
-        System.out.println(variavel);
+    public Usuario procura(String login) throws SQLException {
+        System.out.println(login);
         db = new Dbase();
         conn = db.getConnection();
         Usuario user = null;
@@ -63,12 +64,12 @@ public class Usuario {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            if (rs.getString("login").equals(variavel)) {
-                if (rs.getString("email").equals(variavel)) {
+            if (rs.getString("login").equals(login)) {
+                //if (rs.getString("email").equals(email)) {
                     user = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"),
                             rs.getString("email"), rs.getString("endereco"), rs.getString("telefone"));
                     break;
-                }
+                //}
             }
         }
         conn.close();
@@ -110,7 +111,11 @@ public class Usuario {
         }
         return alterada;
     }
-
+    
+    public int getId(){
+        return this.id;
+    }
+    
     public String getNome() {
         return nome;
     }

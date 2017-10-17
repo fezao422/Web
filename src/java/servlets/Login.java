@@ -30,9 +30,10 @@ public class Login extends HttpServlet {
                 out.println("<p><a href=\"Login.jsp\">Tente novamente</a></p>");
                 out.println("</div>");
             }else{
-                if(user.autentica(user)){
-                    //request.getSession().setAttribute("logado", new Boolean(true));
+               if(user.autentica(user)){
+                    request.getSession().setAttribute("usuario", new Boolean(true));
                     request.getSession().setAttribute("login", user.getLogin());
+                    request.getSession().setAttribute("id", user.getId());
                     response.sendRedirect("./Restrito.jsp");
                 }else{
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
