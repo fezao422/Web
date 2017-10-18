@@ -11,8 +11,6 @@ public class Postagem {
         
     }
 
-    
-    
     public int getId() {
         return id;
     }

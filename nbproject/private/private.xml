@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/VueJs/src/java/model/Usuario.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/VueJs/web/Login.jsp</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/VueJs/src/java/servlets/Login.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/VueJs/src/java/model/Postagem.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/VueJs/src/java/servlets/Restrito.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/VueJs/web/Erros.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/VueJs/web/Restrito.jsp</file>
         </group>
     </open-files>
 </project-private>

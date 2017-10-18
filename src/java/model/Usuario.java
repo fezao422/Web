@@ -48,7 +48,7 @@ public class Usuario {
         boolean ok = false;
         Usuario dentro = procura(user.login);
         
-        if (dentro != null || dentro.senha.equals(user.senha)) {
+        if (dentro != null && dentro.senha.equals(user.senha)){
             ok = true;
         }
         return ok;
@@ -72,6 +72,7 @@ public class Usuario {
                 //}
             }
         }
+        System.out.println(user);
         conn.close();
         db.closeConnection();
         return user;

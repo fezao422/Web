@@ -1,4 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,6 +7,7 @@
         <title>VueJs</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%%>
+        <h1> MERRRRRRRRRRRRRDDDDDDDDDDAAAAAAAAAAA</h1>
     </body>
 </html>
