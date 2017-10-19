@@ -46,16 +46,28 @@ public class Usuario {
     public boolean autentica(Usuario user) throws SQLException {
 
         boolean ok = false;
-        Usuario dentro = procura(user.login);
+        Usuario resultado = null;
         
-        if (dentro != null && dentro.senha.equals(user.senha)){
-            ok = true;
-        }
+        db = new Dbase();
+        conn = db.getConnection();
+        String sql = "select login, senha from usuario";
+        ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        
+        while (rs.next()) {
+                resultado = new Usuario(rs.getString("login"),rs.getString("senha"));
+                if (resultado.login.equals(user.login) && resultado.senha.equals(user.senha)) {
+                    ok = true;
+                    break;
+                }
+         }
+        conn.close();
+        db.closeConnection();
         return ok;
-    }
-
+        }
+       
     public Usuario procura(String login) throws SQLException {
-        System.out.println(login);
+        
         db = new Dbase();
         conn = db.getConnection();
         Usuario user = null;
@@ -64,15 +76,13 @@ public class Usuario {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            if (rs.getString("login").equals(login)) {
-                //if (rs.getString("email").equals(email)) {
-                    user = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"),
-                            rs.getString("email"), rs.getString("endereco"), rs.getString("telefone"));
-                    break;
-                //}
+            if (rs.getString("login").equals(login) || rs.getString("email").equals(email)) {
+                
+                user = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"),
+                        rs.getString("email"), rs.getString("endereco"), rs.getString("telefone"));
+                break;
             }
         }
-        System.out.println(user);
         conn.close();
         db.closeConnection();
         return user;
