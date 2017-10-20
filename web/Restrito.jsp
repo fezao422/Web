@@ -9,21 +9,31 @@
         <title>VueJs</title>
     </head>
     <body>
-        <% if(session.getAttribute("logado")!=null) && session.getAttribute("logado".equals(new Boolean(true))){
-        String userLogin = (String) session.getAttribute("user");
-        Usuario user = Usuario.procura(userLogin);
+        <% 
+            if(session.getAttribute("login")!= null && session.getAttribute("usuario").equals(new Boolean(true))){
+                String userLogin = (String) session.getAttribute("login");
+                Usuario user = new Usuario();
+                user = user.procura(userLogin);%>
+                <h1>Bem Vindo: <%= user.getLogin()%></h1>
+                                
+                <p>Nome: <%= user.getNome()%></p>
+                
+                <p>Endereço: <%= user.getEndereco()%></p>
+                
+                <p>Email: <%= user.getEmail()%></p>
+                
+                <button><a href="./Logout">LOGOUT</a></button>
+                
+                <p>Postagens:</p>
 
-    }%>
-    <h1>Bem Vindo</h1>
-    <h2>User:<%user.getLogin()%> <small><a href="./Logout">Logout</a></small></h2>
-    <p>Endereço: <%user.getEndereco()%></p>
-    <p>Email: 
 
 
 
+                
 
 
-        %>
-        
+     <% } else { %>
+ 		<h1>Você não está logado, <a href="./Login.jsp">Faça seu login clicando aqui</a> </h1>
+        <% } %>    
     </body>
 </html>

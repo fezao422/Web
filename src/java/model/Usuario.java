@@ -76,7 +76,7 @@ public class Usuario {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            if (rs.getString("login").equals(login) || rs.getString("email").equals(email)) {
+            if (rs.getString("login").equals(login) || rs.getString("email").equals(login)) {
                 
                 user = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"),
                         rs.getString("email"), rs.getString("endereco"), rs.getString("telefone"));
