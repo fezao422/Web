@@ -11,9 +11,13 @@
     <body>
         <% if(session.getAttribute("logado")!=null) && session.getAttribute("logado".equals(new Boolean(true))){
         String userLogin = (String) session.getAttribute("user");
-        Usuario user = Usuario.
-    }
+        Usuario user = Usuario.procura(userLogin);
 
+    }%>
+    <h1>Bem Vindo</h1>
+    <h2>User:<%user.getLogin()%> <small><a href="./Logout">Logout</a></small></h2>
+    <p>Endereço: <%user.getEndereco()%></p>
+    <p>Email: 
 
 
 
