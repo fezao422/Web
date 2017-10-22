@@ -33,7 +33,7 @@ public class Cadastro extends HttpServlet {
                 out.println("<p><a href=\"Cadastro.jsp\">Tente novamente</a></p>");
                 out.println("</div>");
 
-            } else if (user.procura(user.getLogin()) != null || user.procura(user.getEmail()) != null) {
+            } else if (user.procura(user.getLogin(),user.getEmail()) != null ) {
 
                 out.println("<div class=\"cadastro\">");
                 out.println("<p>Login ou E-mail já existente!</p>");
@@ -42,6 +42,8 @@ public class Cadastro extends HttpServlet {
 
             } else {
                 if (user.gravar(user)) {
+                    request.getSession().setAttribute("usuario", new Boolean(true));
+                    request.getSession().setAttribute("login", user.getLogin());
                     response.sendRedirect("./Restrito.jsp");
                 }
             }

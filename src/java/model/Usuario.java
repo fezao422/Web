@@ -66,8 +66,8 @@ public class Usuario {
         return ok;
         }
        
-    public Usuario procura(String login) throws SQLException {
-        
+    public Usuario procura(String login, String email) throws SQLException {
+        System.out.println(login);
         db = new Dbase();
         conn = db.getConnection();
         Usuario user = null;
@@ -76,7 +76,7 @@ public class Usuario {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            if (rs.getString("login").equals(login) || rs.getString("email").equals(login)) {
+            if (rs.getString("login").equals(login) || rs.getString("email").equals(email)) {
                 
                 user = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"),
                         rs.getString("email"), rs.getString("endereco"), rs.getString("telefone"));
@@ -93,7 +93,7 @@ public class Usuario {
         db = new Dbase();
         conn = db.getConnection();
         boolean ok = false;
-        String sql = "INSERT INTO usuario(nome,login,senha,email,endereco,telefone) VALUES(?,?,?,?,?,?);";
+        String sql = "insert into usuario(nome,login,senha,email,endereco,telefone) values(?,?,?,?,?,?);";
 
         try {
             ps = conn.prepareStatement(sql);

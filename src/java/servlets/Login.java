@@ -33,7 +33,6 @@ public class Login extends HttpServlet {
                if(user.autentica(user)){
                     request.getSession().setAttribute("usuario", new Boolean(true));
                     request.getSession().setAttribute("login", user.getLogin());
-                   // request.getSession().setAttribute("id", user.getId());
                     response.sendRedirect("./Restrito.jsp");
                }else{
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
