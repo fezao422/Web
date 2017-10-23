@@ -30,19 +30,37 @@ public class Postagem {
         this.imagem = imagem;
     }
     
+    public boolean apagar(int idPostagem) throws SQLException{
+        boolean ok = false;
+        db = new Dbase();
+        conn = db.getConnection();
+        String sql = ("delete from postagem where id = ?;");
+        
+        try {
+            ps= conn.prepareStatement(sql);
+            ps.setInt(1, idPostagem);
+            ok = true;
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Postagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conn.close();
+        db.closeConnection();
+        return ok;
+    }
+    
     public boolean gravar(Postagem post) throws SQLException{
         boolean ok = false;
         db = new Dbase();
         conn = db.getConnection();
-        String sql = "insert into postagem(id,usuario_id,titulo,texto,imagem) values (?,?,?,?,?);";
+        String sql = "insert into postagem(usuario_id,titulo,texto,imagem) values (?,?,?,?);";
         
         try {
             ps= conn.prepareStatement(sql);
-            ps.setInt(1, post.getId());
-            ps.setInt(2, post.getUsuario_id());
-            ps.setString(3, post.getTitulo());
-            ps.setString(4, post.getTexto());
-            ps.setString(5, post.getImagem());
+            ps.setInt(1, post.getUsuario_id());
+            ps.setString(2, post.getTitulo());
+            ps.setString(3, post.getTexto());
+            ps.setString(4, post.getImagem());
             ps.execute();
             ok = true;
             ps.close();

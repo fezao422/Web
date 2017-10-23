@@ -35,13 +35,31 @@
                 <small><a href="./Logout">logout</a></small>
                 
                 <p>Postagens:</p>
-                
-                <form action="./Restrito.jsp" method = "get">
-                    Filtrar Postagens:<input type="text" name="termo"></form>
+                <form action="./Restrito" method = "post">
+                    Adicionar Nova Postagem:<br>
+                    <input type="hidden" name="usuario_id" value="<%=user.getId()%>"><br>
+                    Titulo:
+                    <input type="text" name="titulo"><br><br>
+                    Texto:
+                    <input type="text" name="texto"><br><br>
+                    
+                    <input type="submit" value="NOVO">
+                </form>
+                    <br>
+                    <br>
+                <form>
+                    Filtrar Postagens:<input type="text" name="termo"><input type="submit" value="pesquisa">
+                </form>
                 
                 <p><%= postagem.size()%> Registro(s) encontrado(s)</p>
                 <% for(Postagem cadaPost : postagem){%>
                 <p><%= cadaPost.getTitulo()%></p>
+                <p><%= cadaPost.getTexto()%></p>
+                
+                <form>
+                <input type="hidden" name="id_postagem" value="<%= cadaPost.getId() %>">
+                <input value="Apagar" type="submit"></form>
+                
                 <%}%>
         <%  } 
             else{ %>
