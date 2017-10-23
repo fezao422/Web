@@ -30,7 +30,23 @@ public class Postagem {
         this.imagem = imagem;
     }
     
-    public boolean apagar(int idPostagem) throws SQLException{
+    public int getUltimoId(){//muda o nome da foto
+        int aux = 0;
+            db = new Dbase();
+            conn = db.getConnection();
+            String sql = ("select max(id) from postagem;");
+        try {
+            ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+                aux = rs.getInt("max");
+        } catch (SQLException e) {
+           return 0;
+        }
+        return aux+1;
+    }
+    
+    public boolean apagar(int idPostagem) throws SQLException{//apaga post
         boolean ok = false;
         db = new Dbase();
         conn = db.getConnection();
@@ -39,28 +55,6 @@ public class Postagem {
         try {
             ps= conn.prepareStatement(sql);
             ps.setInt(1, idPostagem);
-            ok = true;
-            ps.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Postagem.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        conn.close();
-        db.closeConnection();
-        return ok;
-    }
-    
-    public boolean gravar(Postagem post) throws SQLException{
-        boolean ok = false;
-        db = new Dbase();
-        conn = db.getConnection();
-        String sql = "insert into postagem(usuario_id,titulo,texto,imagem) values (?,?,?,?);";
-        
-        try {
-            ps= conn.prepareStatement(sql);
-            ps.setInt(1, post.getUsuario_id());
-            ps.setString(2, post.getTitulo());
-            ps.setString(3, post.getTexto());
-            ps.setString(4, post.getImagem());
             ps.execute();
             ok = true;
             ps.close();
@@ -72,7 +66,30 @@ public class Postagem {
         return ok;
     }
     
-    public ArrayList<Postagem> pesquisa(String termo) throws SQLException{
+    public boolean gravar() throws SQLException{//grava o post no banco de dados
+        boolean ok = false;
+        db = new Dbase();
+        conn = db.getConnection();
+        String sql = "insert into postagem(usuario_id,titulo,texto,imagem) values (?,?,?,?);";
+        
+        try {
+            ps= conn.prepareStatement(sql);
+            ps.setInt(1, this.getUsuario_id());
+            ps.setString(2, this.getTitulo());
+            ps.setString(3, this.getTexto());
+            ps.setString(4, this.getImagem());
+            ps.execute();
+            ok = true;
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Postagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conn.close();
+        db.closeConnection();
+        return ok;
+    }
+    
+    public ArrayList<Postagem> pesquisa(String termo) throws SQLException{ // faz um array list das postagens no banco
         ResultSet rs;
         ArrayList<Postagem> obj = new ArrayList();
         db = new Dbase();
@@ -90,7 +107,7 @@ public class Postagem {
         return obj;
     }
     
-    public ArrayList<Postagem> postUser(int usuario_id) throws SQLException{
+    public ArrayList<Postagem> postUser(int usuario_id) throws SQLException{//pega todas as postagens referentes ao usuario que entrou
         ResultSet rs;
         ArrayList<Postagem> obj = new ArrayList();
         db = new Dbase();
@@ -108,7 +125,7 @@ public class Postagem {
         return obj;        
     }
     
-    public Postagem pesquisa(int id) throws SQLException{
+     /*public Postagem pesquisa(int id) throws SQLException{
         ResultSet rs;
         Postagem obj = null;
         db = new Dbase();
@@ -126,7 +143,7 @@ public class Postagem {
         conn.close();
         db.closeConnection();
         return obj;
-    }
+    }*/
 
     public int getId() {
         return id;

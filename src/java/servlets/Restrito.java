@@ -14,7 +14,7 @@ import model.Postagem;
 
 @WebServlet(name = "Restrito", urlPatterns = {"/Restrito"})
 public class Restrito extends HttpServlet {
-
+/*
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -46,17 +46,20 @@ public class Restrito extends HttpServlet {
             }
         }
     }
-
+*/
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+            Boolean verift = false;
             Postagem post =  new Postagem(0,Integer.parseInt(request.getParameter("usuario_id")), request.getParameter("titulo"),request.getParameter("texto"),request.getParameter("imagem"));
         try {
-            post.gravar(post);
+            verift = post.gravar();
+            if(verift){
+                response.sendRedirect("./Restrito.jsp");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Restrito.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.sendRedirect("./Restrito.jsp");
-    }   
+    }
+    
 }

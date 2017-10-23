@@ -2,7 +2,6 @@
 <%@page import="model.Usuario"%>
 <%@page import="model.Postagem"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,28 +24,27 @@
                 }
         %>
                 <h1>Bem Vindo: <%= user.getLogin()%></h1>
-                                
                 <p>Nome: <%= user.getNome()%></p>
-                
                 <p>Endereço: <%= user.getEndereco()%></p>
-                
                 <p>Email: <%= user.getEmail()%></p>
-                
                 <small><a href="./Logout">logout</a></small>
                 
                 <p>Postagens:</p>
-                <form action="./Restrito" method = "post">
+                <form action="./Postagem" method = "post" enctype="multipart/form-data">
                     Adicionar Nova Postagem:<br>
                     <input type="hidden" name="usuario_id" value="<%=user.getId()%>"><br>
                     Titulo:
                     <input type="text" name="titulo"><br><br>
                     Texto:
                     <input type="text" name="texto"><br><br>
-                    
+                    Imagem:
+                    <input type="file" name="file">
                     <input type="submit" value="NOVO">
                 </form>
+                    
                     <br>
                     <br>
+                    
                 <form>
                     Filtrar Postagens:<input type="text" name="termo"><input type="submit" value="pesquisa">
                 </form>
@@ -55,10 +53,13 @@
                 <% for(Postagem cadaPost : postagem){%>
                 <p><%= cadaPost.getTitulo()%></p>
                 <p><%= cadaPost.getTexto()%></p>
-                
-                <form>
-                <input type="hidden" name="id_postagem" value="<%= cadaPost.getId() %>">
-                <input value="Apagar" type="submit"></form>
+                <form action="./Postagem" method="get" >
+        <input type="submit" value="Visalizar imagem" />
+    </form>
+                <form action="./ApagaPost" method="post">
+                    <input type="hidden" name="id" value="<%= cadaPost.getId() %>">
+                    <input value="Apagar" type="submit">
+                </form>
                 
                 <%}%>
         <%  } 
