@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import model.Postagem;
+import utilidades.GeradorNum;
 
 @WebServlet(name = "Postagem", urlPatterns = {"/Postagem"})
 public class Post extends HttpServlet {
@@ -27,18 +28,16 @@ public class Post extends HttpServlet {
         Postagem postagem = new Postagem();
         Part userFile = request.getPart("file");
         
-        Boolean verift = true;
+        Boolean ok = true;
         
         String oldFileName = Paths.get(userFile.getSubmittedFileName()).getFileName().toString();
         if(!oldFileName.equals("")){
-            String fileName = "Arquivo" + postagem.getUltimoId() + oldFileName.substring(oldFileName.lastIndexOf("."));
+            String fileName = "/img/photo/Arquivo" + GeradorNum.geradorCod()+ oldFileName.substring(oldFileName.lastIndexOf("."));//retira a extensão
             InputStream fileContent = userFile.getInputStream();
 
-            String images= request.getServletContext().getRealPath("/img/photo/");//pega a pasta raiz do projeto e navega ate a pasta atual PHOLO.
+            String images= request.getServletContext().getRealPath("");//pega a pasta raiz do projeto e navega ate a pasta atual PHOLO.
             File updates = new File(images);
             File file = new File(updates, fileName);
-        
-        
         
         try(InputStream input = fileContent){
             Files.copy(input, file.toPath());
@@ -46,8 +45,8 @@ public class Post extends HttpServlet {
             postagem.setTitulo(request.getParameter("titulo"));
             postagem.setTexto(request.getParameter("texto"));
             postagem.setImagem(fileName);
-            verift = postagem.gravar();
-            if (verift){
+            ok = postagem.gravar();
+            if (ok){
                 response.sendRedirect("./Restrito.jsp");
             }
         } catch (SQLException ex) {
@@ -59,8 +58,8 @@ public class Post extends HttpServlet {
                 postagem.setTitulo(request.getParameter("titulo"));
                 postagem.setTexto(request.getParameter("texto"));
                 postagem.setImagem("");
-                verift = postagem.gravar();
-                if (verift)
+                ok = postagem.gravar();
+                if (ok)
                     response.sendRedirect("./Restrito.jsp");
             } catch (SQLException ex) {
                 Logger.getLogger(Post.class.getName()).log(Level.SEVERE, null, ex);

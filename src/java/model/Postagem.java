@@ -30,22 +30,6 @@ public class Postagem {
         this.imagem = imagem;
     }
     
-    public int getUltimoId(){//muda o nome da foto
-        int aux = 0;
-            db = new Dbase();
-            conn = db.getConnection();
-            String sql = ("select max(id) from postagem;");
-        try {
-            ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next())
-                aux = rs.getInt("max");
-        } catch (SQLException e) {
-           return 0;
-        }
-        return aux+1;
-    }
-    
     public boolean apagar(int idPostagem) throws SQLException{//apaga post
         boolean ok = false;
         db = new Dbase();

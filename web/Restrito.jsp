@@ -4,7 +4,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE html>
 <html>
+
     <head>
+        <link rel="stylesheet" type="text/css" href="./style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>VueJs</title>
     </head>
@@ -50,18 +52,19 @@
                 </form>
                 
                 <p><%= postagem.size()%> Registro(s) encontrado(s)</p>
+                <div class="posts">
                 <% for(Postagem cadaPost : postagem){%>
-                <p><%= cadaPost.getTitulo()%></p>
-                <p><%= cadaPost.getTexto()%></p>
-                <form action="./Postagem" method="get" >
-        <input type="submit" value="Visalizar imagem" />
-    </form>
-                <form action="./ApagaPost" method="post">
-                    <input type="hidden" name="id" value="<%= cadaPost.getId() %>">
-                    <input value="Apagar" type="submit">
-                </form>
-                
+                <div class="post">
+                    <p><%= cadaPost.getTitulo()%></p>
+                    <p><%= cadaPost.getTexto()%></p>
+                    <img src="<%=request.getContextPath()%>/<%=cadaPost.getImagem()%>" width="300" height="300"/>
+                    <form action="./ApagaPost" method="post">
+                        <input type="hidden" name="id" value="<%= cadaPost.getId() %>">
+                        <input value="Apagar" type="submit">
+                    </form>
+                    </div>
                 <%}%>
+                </div>
         <%  } 
             else{ %>
  		<h1>Você não está logado, <a href="./Login.jsp">Faça seu login clicando aqui</a> </h1>

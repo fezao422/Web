@@ -14,6 +14,10 @@ a{
     padding: 60px;
     text-align: center;
 }
+
+.post{
+    display: inline-block;
+}
 @media screen and (min-width: 900px){
 
     body {
