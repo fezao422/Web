@@ -27,19 +27,23 @@ public class Cadastro extends HttpServlet {
 
             if (user.getNome().equals("") || user.getLogin().equals("") || user.getSenha().equals("")
                     || user.getEmail().equals("") || user.getEndereco().equals("") || user.getTelefone().equals("")) {
-
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title></title>");
+                out.println("</head>");
+                out.println("<body>");
                 out.println("<div class=\"cadastro\">");
                 out.println("<p>Preencha todos os campos!</p>");
-                out.println("<p><a href=\"Cadastro.jsp\">Tente novamente</a></p>");
+                out.println("<p><a href=\"./Cadastro.jsp\">Tente novamente</a></p>");
                 out.println("</div>");
-
+                out.println("</body>");
+                out.println("</html>");
             } else if (user.procura(user.getLogin(),user.getEmail()) != null ) {
-
                 out.println("<div class=\"cadastro\">");
                 out.println("<p>Login ou E-mail já existente!</p>");
-                out.println("<p><a href=\"Cadastro.jsp\">Tente novamente</a></p>");
+                out.println("<p><a href=\"./Cadastro.jsp\">Tente novamente</a></p>");
                 out.println("</div>");
-
             } else {
                 if (user.gravar(user)) {
                     request.getSession().setAttribute("usuario", new Boolean(true));

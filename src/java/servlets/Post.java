@@ -26,18 +26,18 @@ public class Post extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         Postagem postagem = new Postagem();
-        Part userFile = request.getPart("file");
+        Part userFile = request.getPart("file");// representa um arquivo
         
         Boolean ok = true;
         
         String oldFileName = Paths.get(userFile.getSubmittedFileName()).getFileName().toString();
         if(!oldFileName.equals("")){
             String fileName = "/img/photo/Arquivo" + GeradorNum.geradorCod()+ oldFileName.substring(oldFileName.lastIndexOf("."));//retira a extensão
-            InputStream fileContent = userFile.getInputStream();
+            InputStream fileContent = userFile.getInputStream();//upafluxo dedados de entradaem bits
 
             String images= request.getServletContext().getRealPath("");//pega a pasta raiz do projeto e navega ate a pasta atual PHOLO.
-            File updates = new File(images);
-            File file = new File(updates, fileName);
+            File file = new File(images, fileName);
+            
         
         try(InputStream input = fileContent){
             Files.copy(input, file.toPath());

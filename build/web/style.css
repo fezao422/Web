@@ -186,7 +186,7 @@ a{
 @media screen and (max-width: 900px){
     body{
         font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
-        color:#34495e;
+        color:white;
         font-size: 14px;
         margin: 0 auto;
     }

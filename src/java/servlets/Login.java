@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
             if(user.getLogin().equals("") || user.getSenha().equals("")){
                 out.println("<div class=\"cadastro\">");
                 out.println("<p>Preencha todos os campos!</p>");
-                out.println("<p><a href=\"Login.jsp\">Tente novamente</a></p>");
+                out.println("<p><a href=\"./Login.jsp\">Tente novamente</a></p>");
                 out.println("</div>");
             }else{
                if(user.autentica(user)){
@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
                     out.println("<p>Usuario não encontrado</p>");
                     out.println("<p><a href=\"Login.jsp\">Tente novamente</a></p>");
                     out.println("<p> OU </p>");
-                    out.println("<p><a href=\"Cadastro.jsp\">Faça seu cadastro</a></p>");
+                    out.println("<p><a href=\"./Cadastro.jsp\">Faça seu cadastro</a></p>");
                     out.println("</div>");
                }
             }
