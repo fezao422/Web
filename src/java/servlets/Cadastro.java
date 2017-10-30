@@ -20,33 +20,25 @@ public class Cadastro extends HttpServlet {
             throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
 
-            out.println("<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">");
+            
 
             Usuario user = new Usuario(0, request.getParameter("nome"), request.getParameter("login"), request.getParameter("senha"),
                     request.getParameter("email"), request.getParameter("endereco"), request.getParameter("fone"));
 
             if (user.getNome().equals("") || user.getLogin().equals("") || user.getSenha().equals("")
                     || user.getEmail().equals("") || user.getEndereco().equals("") || user.getTelefone().equals("")) {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title></title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<div class=\"cadastro\">");
-                out.println("<p>Preencha todos os campos!</p>");
-                out.println("<p><a href=\"./Cadastro.jsp\">Tente novamente</a></p>");
-                out.println("</div>");
-                out.println("</body>");
-                out.println("</html>");
+                
+                request.setAttribute("cadastro", true);
+                request.getRequestDispatcher("./ErroCadastro.jsp").forward(request, response);
+                
             } else if (user.procura(user.getLogin(),user.getEmail()) != null ) {
-                out.println("<div class=\"cadastro\">");
-                out.println("<p>Login ou E-mail já existente!</p>");
-                out.println("<p><a href=\"./Cadastro.jsp\">Tente novamente</a></p>");
-                out.println("</div>");
+                
+                request.setAttribute("cadastro", false);
+                request.getRequestDispatcher("./ErroCadastro.jsp").forward(request, response);
+
             } else {
                 if (user.gravar(user)) {
-                    request.getSession().setAttribute("usuario", new Boolean(true));
+                    request.getSession().setAttribute("usuario", true);
                     request.getSession().setAttribute("login", user.getLogin());
                     response.sendRedirect("./Restrito.jsp");
                 }

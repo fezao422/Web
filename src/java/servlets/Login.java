@@ -25,23 +25,19 @@ public class Login extends HttpServlet {
             Usuario user = new Usuario(request.getParameter("login"),request.getParameter("senha"));
             
             if(user.getLogin().equals("") || user.getSenha().equals("")){
-                out.println("<div class=\"cadastro\">");
-                out.println("<p>Preencha todos os campos!</p>");
-                out.println("<p><a href=\"./Login.jsp\">Tente novamente</a></p>");
-                out.println("</div>");
+                
+                request.setAttribute("login", true);
+                request.getRequestDispatcher("./ErroLogin.jsp").forward(request, response);
+                
             }else{
                if(user.autentica(user)){
-                    request.getSession().setAttribute("usuario", new Boolean(true));
+                    request.getSession().setAttribute("usuario", true);
                     request.getSession().setAttribute("login", user.getLogin());
                     response.sendRedirect("./Restrito.jsp");
                }else{
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                    out.println("<div class=\"cadastro\">");
-                    out.println("<p>Usuario não encontrado</p>");
-                    out.println("<p><a href=\"Login.jsp\">Tente novamente</a></p>");
-                    out.println("<p> OU </p>");
-                    out.println("<p><a href=\"./Cadastro.jsp\">Faça seu cadastro</a></p>");
-                    out.println("</div>");
+                    request.setAttribute("login", false);
+                    request.getRequestDispatcher("./ErroLogin.jsp").forward(request, response);
                }
             }
         } catch (SQLException ex) {

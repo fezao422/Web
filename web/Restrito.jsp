@@ -36,9 +36,9 @@
                     Adicionar Nova Postagem:<br>
                     <input type="hidden" name="usuario_id" value="<%=user.getId()%>"><br>
                     Titulo:
-                    <input type="text" name="titulo"><br><br>
+                    <input type="text" required="required" name="titulo"/><br><br>
                     Texto:
-                    <input type="text" name="texto"><br><br>
+                    <input type="text" required="required" name="texto"><br><br>
                     Imagem:
                     <input type="file" name="file">
                     <input type="submit" value="NOVO">
@@ -57,7 +57,9 @@
                 <div class="post">
                     <p><%= cadaPost.getTitulo()%></p>
                     <p><%= cadaPost.getTexto()%></p>
-                    <img src="<%=request.getContextPath()%>/<%=cadaPost.getImagem()%>" width="300" height="300"/>
+                    <%if(!cadaPost.getImagem().equals("")){%>
+                        <img src="<%=request.getContextPath()%>/<%=cadaPost.getImagem()%>" width="300" height="300"/>
+                   <% }%>
                     <form action="./ApagaPost" method="post">
                         <input type="hidden" name="id" value="<%= cadaPost.getId() %>">
                         <input value="Apagar" type="submit">
@@ -65,8 +67,7 @@
                     </div>
                 <%}%>
                 </div>
-        <%  } 
-            else{ %>
+        <%}else{%>
  		<h1>Você não está logado, <a href="./Login.jsp">Faça seu login clicando aqui</a> </h1>
         <% } %>    
     </body>
