@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Logout extends HttpServlet {
    @Override
    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        request.getSession().setAttribute("usuario", new Boolean(false));
+        request.getSession().setAttribute("usuario", false);
         request.getSession().setAttribute("login", null);
         response.sendRedirect("./index.html");
     }

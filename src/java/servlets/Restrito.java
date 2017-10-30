@@ -1,4 +1,4 @@
-package servlets;
+/*package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,7 +47,7 @@ public class Restrito extends HttpServlet {
         }
     }
 */
-    @Override
+/*    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
             Boolean verift = false;
@@ -63,3 +63,4 @@ public class Restrito extends HttpServlet {
     }
     
 }
+*/

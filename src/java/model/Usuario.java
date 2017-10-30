@@ -67,7 +67,7 @@ public class Usuario {
         }
        
     public Usuario procura(String login, String email) throws SQLException {
-        System.out.println(login);
+        
         db = new Dbase();
         conn = db.getConnection();
         Usuario user = null;

@@ -109,26 +109,6 @@ public class Postagem {
         return obj;        
     }
     
-     /*public Postagem pesquisa(int id) throws SQLException{
-        ResultSet rs;
-        Postagem obj = null;
-        db = new Dbase();
-        conn = db.getConnection();
-        String sql = ("select * from postagem where id = ?;");
-        ps = conn.prepareStatement(sql);
-        ps.setInt(1, id);
-        rs = ps.executeQuery();
-        while(rs.next()){
-            if(rs.getInt("id") == id){
-                obj = new Postagem(rs.getInt("id"),rs.getInt("usuario_id"),rs.getString("titulo"),rs.getString("texto"),rs.getString("imagem"));
-            }
-        }
-        ps.close();
-        conn.close();
-        db.closeConnection();
-        return obj;
-    }*/
-
     public int getId() {
         return id;
     }
@@ -168,5 +148,4 @@ public class Postagem {
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
-    
 }
