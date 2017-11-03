@@ -2,29 +2,56 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <title>Login</title>
+        <title>Vuejs.org</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body>
-        <div class="cadastro">
-            <h1>Login</h1>
-            <form action="Login" method="POST">
-                <label for="nome" name="nome">Login:</label>
-                <br>
-                <input type="text" name="login">
-                <br>
-                <br>
-                <label for="password" name="senha">Senha:</label>
-                <br>
-                <input type="password" name="senha">
-                <br>
-                <br>
-                <input type="submit" value="Logar">
-            </form>
-            <br>
-            <p>Se não tem um cadastro, <a href="./Cadastro.jsp">clique aqui</a> </p>
-            <br>
+        <nav>
+            <div class="menuBotao"></div>
+            <div class="titulo">
+                <span>Vue.js</span>
+            </div>
+            <div class="menu">
+                <ul>
+                    <input type="text">
+                    <li>Guide</li>
+                    <li>API</li>
+                    <li>Examples</li>
+                    <li>Ecosystem</li>
+                    <li>Translations</li>
+                    <li>Shop</li>
+                </ul>
+            </div>
+        </nav>
+        <div class="teste">
+            <div class="header">
+                <div class="texto">
+                    <div>
+                        <h1>Login</h1>
+                        <form action="Login" method="POST">
+                            <label for="nome" name="nome">Login:</label>
+                            <br>
+                            <input type="text" name="login">
+                            <br>
+                            <br>
+                            <label for="password" name="senha">Senha:</label>
+                            <br>
+                            <input type="password" name="senha">
+                            <br>
+                            <br>
+                            
+                        <br>
+                        <div class="botoes">
+                            <input class="branco" type="submit" value="LoGIN">  ou 
+                            <a href="./Cadastro.jsp" class="verde">CADASTRE-SE</a>
+                        </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </body>
 </html>

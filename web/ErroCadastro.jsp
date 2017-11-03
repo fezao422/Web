@@ -2,25 +2,57 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Vuejs.org</title>
         <link rel="stylesheet" href="style.css" type="text/css">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Erro de Cadastro</title>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body>
-        <%if(request.getAttribute("cadastro").equals(true)){%>
-            
-            <div class="cadastro">
-                <p>Preencha todos os campos!</p>
-                <p><a href="./Cadastro.jsp">Tente novamente</a></p>
+        <nav>
+            <div class="menuBotao"></div>
+            <div class="titulo">
+                <span>Vue.js</span>
             </div>
+            <div class="menu">
+                <ul>
+                    <input type="text">
+                    <li>Guide</li>
+                    <li>API</li>
+                    <li>Examples</li>
+                    <li>Ecosystem</li>
+                    <li>Translations</li>
+                    <li>Shop</li>
+                </ul>
+            </div>
+        </nav>
+        <div class="teste">
+            <div class="header">
+                <div class="texto">
+                
+                <%if(request.getAttribute("cadastro").equals(true)){%>
+            
+            
+                <h1>Preencha todos os campos!</h1>
+                <div class="botoes">
+                    <a class="verde" href="./Cadastro.jsp">Tente novamente</a>
+                </div>
+            
         
         <%}else{%>
             
-            <div class="cadastro">
-                <p>Login ou E-mail já existente!</p>
-                <p><a href="./Cadastro.jsp">Tente novamente</a></p>
+            <div class="botoes">
+                <h1>Login ou E-mail já existente!</h1>
+                <a class="verde" href="./Cadastro.jsp">Tente novamente</a>
             </div>
  
         <%}%>    
+                
+                </div>
+            </div>
+        </div>
     </body>
 </html>
+
+
+
+                              

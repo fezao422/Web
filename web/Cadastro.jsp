@@ -2,14 +2,34 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type ="text/css" href="style.css"/>
-        <title>Cadastro</title>
+        <title>Vuejs.org</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body>
-        <div class ="cadastro">
-            <h1>Cadastre-se</h1>
-            <form action="Cadastro" method="POST">
+        <nav>
+            <div class="menuBotao"></div>
+            <div class="titulo">
+                <span>Vue.js</span>
+            </div>
+            <div class="menu">
+                <ul>
+                    <input type="text">
+                    <li>Guide</li>
+                    <li>API</li>
+                    <li>Examples</li>
+                    <li>Ecosystem</li>
+                    <li>Translations</li>
+                    <li>Shop</li>
+                </ul>
+            </div>
+        </nav>
+        <div class="teste">
+            <div class="header">
+                <div class="texto">
+                <h1>Cadastre-se</h1>
+                <form action="Cadastro" method="POST">
                 <label for="nome" name="nome">Nome Completo:</label>
                 <br>
                 <input type="text" name="nome">
@@ -40,11 +60,15 @@
                 <input type="text" name="fone">
                 <br>
                 <br>
-                <input type="submit" value="Cadastrar">
+                <div class="botoes">
+                <input class="verde" type="submit" value="Cadastrar">
             </form>
-            <br>
-            <p>Se já tem um login, <a href="./Login.jsp">clique aqui</a> </p>
-            <br>
+                </div>
+            </div>
         </div>
     </body>
 </html>
+
+
+
+                              
