@@ -27,26 +27,19 @@
         </nav>
         <div class="teste">
             <div class="header">
-                <div class="texto">
-                
+                <div class="textoTwo">
                 <%if(request.getAttribute("cadastro").equals(true)){%>
-            
-            
-                <h1>Preencha todos os campos!</h1>
-                <div class="botoes">
-                    <a class="verde" href="./Cadastro.jsp">Tente novamente</a>
-                </div>
-            
-        
-        <%}else{%>
-            
-            <div class="botoes">
-                <h1>Login ou E-mail já existente!</h1>
-                <a class="verde" href="./Cadastro.jsp">Tente novamente</a>
-            </div>
- 
-        <%}%>    
-                
+                    <h1>Preencha todos os campos!</h1>
+                    <div class="botoes">
+                        <a class="verde" href="./Cadastro.jsp">Tente novamente</a>
+                    </div>
+                <%}else{%>
+                    <div class="botoes">
+                        <h1>Login ou E-mail já existente!</h1>
+                        <a class="verde" href="./Cadastro.jsp">Tente novamente</a> OU
+                        <a class="branco" href="./Login.jsp">Faça seu login</a>
+                    </div>
+                <%}%>    
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@ create database Projeto;
 create table usuario(
 
 id serial,
-name varchar(100),
+nome varchar(100),
 login varchar(20),
 senha varchar(100),
 email varchar(50),

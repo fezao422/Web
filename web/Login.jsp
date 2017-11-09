@@ -44,7 +44,7 @@
                             
                         <br>
                         <div class="botoes">
-                            <input class="branco" type="submit" value="LoGIN">  ou 
+                            <input class="branco" type="submit" value="LOGIN"> OU 
                             <a href="./Cadastro.jsp" class="verde">CADASTRE-SE</a>
                         </div>
                         </form>

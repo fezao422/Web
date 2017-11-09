@@ -1,3 +1,8 @@
+.textoTwo{
+    height: 300px;
+    width: 400px;
+    float: left;
+}
 body{
     background-color: #333333;
 }

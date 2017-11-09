@@ -27,30 +27,24 @@
         </nav>
         <div class="teste">
             <div class="header">
-                <div class="texto">
-                
+                <div class="textoTwo">
                 <%if(request.getAttribute("login").equals(true)){%>
-            
-            <div>
-                <h1>Preencha todos os campos!</h1>
-
-                <div class="botoes">
-                    <a class="verde" href="./Login.jsp">Tente novamente</a>
-                </div>
-            </div>
-        
-        <%}else{%>
-        
-            <div>
-                <h1>Usuario não encontrado</h1>
-                <p>
-                	<div class="botoes">
-                        <a class="branco" href="./Login.jsp">Tente novamente</a> OU
-                		<a class="verde" href="./Cadastro.jsp">Faça seu cadastro</a></p>
-            		</div>
-            </div>
-        
-        <%}%>
+                    <div>
+                        <h1>Preencha todos os campos!</h1>
+                        <div class="botoes">
+                            <a class="branco" href="./Login.jsp">Tente novamente</a> OU
+                            <a class="verde" href="./Cadastro.jsp">Faça seu cadastro</a>
+                        </div>
+                    </div>
+                <%}else{%>
+                    <div>
+                        <h1>Usuario não encontrado</h1>
+                        <div class="botoes">
+                            <a class="branco" href="./Login.jsp">Tente novamente</a> OU
+                            <a class="verde" href="./Cadastro.jsp">Faça seu cadastro</a>
+                        </div>
+                    </div>
+                <%}%>
                 </div>
             </div>
         </div>
