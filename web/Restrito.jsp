@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="./style.css" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/principal.js"></script>
     </head>
     <body>
         
@@ -90,6 +92,7 @@
                             <input type="hidden" name="id" value="<%= cadaPost.getId() %>">
                             <input class="branco" value="Apagar" type="submit">
                         </form>
+                        
                     </div>
                     <% }%>
                 </div>
