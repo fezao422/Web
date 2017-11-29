@@ -4,4 +4,4 @@ function load(file){
     fileref.setAttribute("src", file);
     document.getElementsByTagName("head")[0].appendChild(fileref);
 }
-//carregar scripts diamicamente 
+//carregar scripts dinamicamente 

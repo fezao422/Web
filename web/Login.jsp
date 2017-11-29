@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="style.css" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="./js/loading.js"></script>
     </head>
     <body>
         <nav>
@@ -44,14 +46,20 @@
                             
                         <br>
                         <div class="botoes">
-                            <input class="branco" type="submit" value="LOGIN"> OU 
-                            <a href="./Cadastro.jsp" class="verde">CADASTRE-SE</a>
+                            <input onclick="startAjax()" class="branco" type="submit" value="LOGIN"> OU 
+                            <a class="verde">CADASTRE-SE</a>
                         </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            var loading = $.loading();
+             function startAjax() {
+                $.get('./Cadastro.jsp', function () {
+                });
+            }
+        </script>
     </body>
 </html>

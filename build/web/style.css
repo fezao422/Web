@@ -1,3 +1,14 @@
+.pesquisa{
+        height: 30px;
+        line-height: 30px;
+        padding: 0 15px 0 30px;
+        border: 1px solid #e3e3e3;
+        color: #2c3e50;
+        border-radius: 15px;
+        margin-right: 10px;
+        background: #fff url("img/lupa.png") 8px 5px no-repeat;
+        background-size: 20px;
+}
 .textoTwo{
     height: 300px;
     width: 400px;
