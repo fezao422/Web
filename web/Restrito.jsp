@@ -70,7 +70,7 @@
                         <input  type="text" required="required" name="texto"><br><br>
                         Imagem:<br>
                         <input  type="file" name="file"><br>
-                        <input onclick="startAjax()" class="verde" type="submit" value="Adicionar">
+                        <input id="startAjax" class="verde" type="submit" value="Adicionar">
                     </form>
                         
                 </div>
@@ -106,7 +106,7 @@
                         
                         <form class="botoes" id="post-<%= cadaPost.getId() %>" action="./ApagaPost" method="post">
                             <input type="hidden" name="id" value="<%= cadaPost.getId() %>">
-                            <input onclick="startAjax()" class="branco" value="Apagar" type="submit">
+                            <input id="startAjax" class="branco" value="Apagar" type="submit">
                         </form>
 
                     </div>
@@ -118,11 +118,13 @@
         </div>
                 
         <script type="text/javascript">
-            var loading = $.loading();
-            function startAjax() {
-                $.get('./Restrito.jsp', function () {
-                });
-            } 
+            
+           var loading = $.loading();
+           $('#startAjax').on('click', function(){
+               $.get('./Restrito.jsp', function(){
+               });
+           });
+           
         </script>
         
         <%}

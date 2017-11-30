@@ -43,10 +43,9 @@
                             <input type="password" name="senha">
                             <br>
                             <br>
-                            
                         <br>
                         <div class="botoes">
-                            <input onclick="startAjax()" class="branco" type="submit" value="LOGIN"> OU 
+                            <input id="startAjax" class="branco" type="submit" value="LOGIN"> OU 
                             <a class="verde">CADASTRE-SE</a>
                         </div>
                         </form>
@@ -56,10 +55,12 @@
         </div>
         <script type="text/javascript">
             var loading = $.loading();
-             function startAjax() {
-                $.get('./Cadastro.jsp', function () {
+            
+            $("#startAjax").on("click", function(){
+                $.get('./Restrito.jsp', function() {
                 });
-            }
+            });
+            
         </script>
     </body>
 </html>

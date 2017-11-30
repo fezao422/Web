@@ -24,28 +24,8 @@
                 $(selector).hide();
             }, opts.minTime);
         });
-
         return $.loading;
     };
-
-    /*$.loading.open = function (time) {
-        var selector = '#' + config.id;
-        $(selector).show();
-        if (time) {
-            setTimeout(function(){
-                $(selector).hide();
-            }, parseInt(time));
-        }
-    };
-
-    $.loading.close = function () {
-        var selector = '#' + config.id;
-        $(selector).hide();
-    };
-
-    $.loading.ajax = function (isListen) {
-        config.ajax = isListen;
-    };*/
 
     $.loading.default = {
         ajax       : true,
@@ -68,7 +48,7 @@
         fontSize   : '14px',
         fontColor  : '#fff'
     };
-
+            
     function init (opts) {
         //wrap div style
         var wrapCss = 'display: none;position: fixed;top: 0;bottom: 0;left: 0;right: 0;margin: auto;padding: 8px;text-align: center;vertical-align: middle;';
