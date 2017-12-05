@@ -19,6 +19,11 @@ public class Usuario {
     private String email;
     private String endereco;
     private String telefone;
+
+    
+    private String cep;
+    private String uf;
+    private String cidade;
     private String foto;
     private Connection conn = null;
     private Dbase db;
@@ -41,6 +46,20 @@ public class Usuario {
         this.email = email;
         this.endereco = ende;
         this.telefone = fone;
+    }
+
+    public Usuario(int id, String nome, String login, String senha, String email, 
+            String endereco, String telefone, String cep, String uf, String cidade) {
+        this.id = id;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+        this.email = email;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.cep = cep;
+        this.uf = uf;
+        this.cidade = cidade;
     }
 
     public boolean autentica(Usuario user) throws SQLException {
@@ -169,5 +188,29 @@ public class Usuario {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+    
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 }

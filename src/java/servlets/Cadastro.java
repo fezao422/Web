@@ -20,29 +20,28 @@ public class Cadastro extends HttpServlet {
             throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
 
-            
-
             Usuario user = new Usuario(0, request.getParameter("nome"), request.getParameter("login"), request.getParameter("senha"),
-                    request.getParameter("email"), request.getParameter("endereco"), request.getParameter("fone"));
+                    request.getParameter("email"), request.getParameter("endereco"), request.getParameter("fone"), 
+                    request.getParameter("cep"), request.getParameter("uf"), request.getParameter("cidade"));
 
-            if (user.getNome().equals("") || user.getLogin().equals("") || user.getSenha().equals("")
-                    || user.getEmail().equals("") || user.getEndereco().equals("") || user.getTelefone().equals("")) {
+            //if (user.getNome().equals("") || user.getLogin().equals("") || user.getSenha().equals("")
+              //      || user.getEmail().equals("") || user.getEndereco().equals("") || user.getTelefone().equals("")) {
                 
-                request.setAttribute("cadastro", true);
-                request.getRequestDispatcher("./ErroCadastro.jsp").forward(request, response);
+                //request.setAttribute(" ", false);
+                //request.getRequestDispatcher("./ErroCadastro.jsp").forward(request, response);
                 
-            } else if (user.procura(user.getLogin(),user.getEmail()) != null ) {
+            //} else if (user.procura(user.getLogin(),user.getEmail()) != null ) {
                 
-                request.setAttribute("cadastro", false);
-                request.getRequestDispatcher("./ErroCadastro.jsp").forward(request, response);
+                //request.setAttribute("cadastro", false);
+                //request.getRequestDispatcher("./ErroCadastro.jsp").forward(request, response);
 
-            } else {
+            //} else {
                 if (user.gravar(user)) {
-                    request.getSession().setAttribute("usuario", true);
-                    request.getSession().setAttribute("login", user.getLogin());
-                    response.sendRedirect("./Restrito.jsp");
+                    //request.getSession().setAttribute("usuario", true);
+                    //request.getSession().setAttribute("login", user.getLogin());
+                   // response.sendRedirect("./Restrito.jsp");
                 }
-            }
+            //}
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }

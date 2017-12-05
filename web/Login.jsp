@@ -46,7 +46,7 @@
                         <br>
                         <div class="botoes">
                             <input id="startAjax" class="branco" type="submit" value="LOGIN"> OU 
-                            <a class="verde">CADASTRE-SE</a>
+                            <a class="verde" href="./Cadastro.jsp" >CADASTRE-SE</a>
                         </div>
                         </form>
                     </div>
