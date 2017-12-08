@@ -112,7 +112,7 @@ public class Usuario {
         db = new Dbase();
         conn = db.getConnection();
         boolean ok = false;
-        String sql = "insert into usuario(nome,login,senha,email,endereco,telefone) values(?,?,?,?,?,?);";
+        String sql = "insert into usuario(nome,login,senha,email,endereco,telefone,cep,cidade,uf) values(?,?,?,?,?,?,?,?,?);";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -122,6 +122,9 @@ public class Usuario {
             ps.setString(4, user.getEmail());
             ps.setString(5, user.getEndereco());
             ps.setString(6, user.getTelefone());
+            ps.setString(7, user.getCep());
+            ps.setString(8, user.getCidade());
+            ps.setString(9, user.getUf());
             ps.execute();
             ok = true;
             ps.close();

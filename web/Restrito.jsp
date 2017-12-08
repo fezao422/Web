@@ -82,23 +82,7 @@
                     </form>
                     
                     <div id="container"> </div>
-                    <script type="text/javascript" charset="utf-8">
-                        
-                        var container = document.querySelector("#container");//retornar primeiro elemento correspondente
-                        console.log(container); // mostrar no console 
-                        document.querySelector("#pesquisa").addEventListener("keyup", function(){ //atribui um manipulador de eventos ao documento especificado
-                           var req = new XMLHttpRequest();
-                           req.open("GET","pesquisa\?termo="+this.value+"&id="+<%=user.getId()%>, true); // true de assincrona
-                           req.onreadystatechange = function (){ //manipulador de eventos é chamado quando o evento é disparado
-                               if(req.readyState === 4 && req.status === 200){
-                                    container.innerHTML = req.responseText; // define ou obtem a sintaze html  descreendo os elementos
-                                }                                            // retorna uma resposta do servidor como 
-                           };
-                           req.send();// retorna a solicitação enviada 
-                        });
-                    </script>
-                    
-                    
+                   
                     <p><%= postagem.size()%> Registro(s) encontrado(s)</p>
                     
                     <% for(Postagem cadaPost : postagem){%>
@@ -119,10 +103,22 @@
                 </div>
             </div>
         </div>
-                
-        <script type="text/javascript">
-            
-           var loading = $.loading();
+        <script type="text/javascript" charset="utf-8">
+        
+            var container = document.querySelector("#container");//retornar primeiro elemento correspondente
+            console.log(container); // mostrar no console 
+            document.querySelector("#pesquisa").addEventListener("keyup", function(){ //atribui um manipulador de eventos ao documento especificado
+               var req = new XMLHttpRequest();
+               req.open("GET","pesquisa\?termo="+this.value+"&id="+<%=user.getId()%>, true); // true de assincrona
+               req.onreadystatechange = function (){ //manipulador de eventos é chamado quando o evento é disparado
+                   if(req.readyState === 4 && req.status === 200){
+                        container.innerHTML = req.responseText; // define ou obtem a sintaze html  descreendo os elementos
+                    }                                            // retorna uma resposta do servidor como 
+               };
+               req.send();// retorna a solicitação enviada 
+            });
+
+            var loading = $.loading();
            $('#startAjax').on('click', function(){
                $.get('./Restrito.jsp', function(){
                });

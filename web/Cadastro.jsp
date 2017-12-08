@@ -52,14 +52,14 @@
                         <input type="text" name="email" id="email">
                         <br>
                         <br>
-                        <label for="endereco">Endereço:</label>
-                        <br>
-                        <input type="text" name="endereco" id="endereco">
-                        <br>
-                        <br>
                         <label for="cep">CEP</label>
                         <br>
                         <input type="text" name="cep" id="cep" onblur="buscaCep()">
+                        <br>
+                        <br>
+                        <label for="endereco">Endereço:</label>
+                        <br>
+                        <input type="text" name="endereco" id="endereco">
                         <br>
                         <br>
                         <label for="uf">UF:</label>
@@ -109,12 +109,14 @@
                     $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + $("#cep").val()
                               + "&formato=json", function (data) {
                         console.log(data);
+                
                         if (data["resultado"]) {
-                            $("#cidade").val(decodeURIComponent(data["cidade"]));
-                            $("#uf").val(decodeURIComponent(data["uf"]));
+                            $("#cidade").val(data.cidade);
+                            $("#uf").val(data.uf);
+                            $("#endereco").val(data.bairro);
                             $("#cidade").prop( "disabled", true );
                             $("#uf").prop( "disabled", true );
-                            
+                            $("#endereco").prop ("disabled", true);
                         }
                     });
                 }
